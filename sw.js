@@ -1,4 +1,4 @@
-const CACHE_NAME = 'phonics-kids-cache-v15';
+const CACHE_NAME = 'phonics-kids-cache-v16';
 const AUDIO_CACHE_NAME = 'phonics-v2-audio-v1';
 const MAX_AUDIO_ENTRIES = 200;
 const MAX_AUDIO_BYTES = 30 * 1024 * 1024; // 30MB（移动端更保守，避免占满配额）
@@ -8,13 +8,13 @@ const ASSETS_TO_CACHE = [
     './',
     './index.html',
     './classic.html',
-    './css/kids.css?v=15',
+    './css/kids.css?v=16',
     './js/kids-core.js?v=15',
     './js/kids-audio.js?v=15',
     './js/kids.js?v=15',
     './data/kids-lessons.json?v=15',
     './icons/explorer-penguin.webp',
-    './icons/adventure-map.png',
+    './icons/adventure-map.jpg',
     './css/style.css?v=14',
     './js/app.js?v=14',
     './js/audio-loader.js?v=14',

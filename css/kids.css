@@ -64,7 +64,7 @@ h1,h2,p{margin:0}
 
 /* The illustrated map keeps the four islands visible; lessons open in a sheet. */
 .map-page{min-height:100vh;min-height:100dvh;background:#0cb0df}
-.map-scene{position:relative;width:100%;height:calc(100dvh - 74px - env(safe-area-inset-bottom));min-height:420px;background:#0cb0df url('../icons/adventure-map.png') center/100% 100% no-repeat}
+.map-scene{position:relative;width:100%;height:calc(100dvh - 74px - env(safe-area-inset-bottom));min-height:420px;background:#0cb0df url('../icons/adventure-map.jpg') center/100% 100% no-repeat}
 .map-back{position:absolute;top:4.8%;left:4.5%;width:46px;height:46px;display:grid;place-items:center;border-radius:50%;background:#fff9ea;border:2px solid #ffe8bc;box-shadow:0 4px 0 #d8c59a;color:#073b74;font-size:1.8rem;font-weight:800;line-height:1}
 .map-hotspot{position:absolute;z-index:1;width:21%;height:12%;display:grid;place-items:center;border:0;border-radius:46%;background:transparent;color:#073b74;touch-action:manipulation}
 .map-marker-label{font-size:clamp(1.3rem,5.7vw,1.85rem);font-weight:1000;line-height:1;letter-spacing:-.06em;text-shadow:0 1px #fff8e8;white-space:nowrap}
