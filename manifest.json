@@ -1,0 +1,21 @@
+{
+    "name": "拼读探险岛",
+    "short_name": "拼读探险",
+    "description": "小学生自然拼读闯关 H5",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#87d3fb",
+    "theme_color": "#87d3fb",
+    "icons": [
+        {
+            "src": "./icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "./icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

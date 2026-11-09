@@ -1,0 +1,1018 @@
+{
+  "version": 1,
+  "islands": [
+    {
+      "id": "sound-bay",
+      "name": "启航海湾",
+      "mapLabel": "辅音",
+      "hint": "学习 b c m p s t 六个辅音",
+      "icon": "⛵"
+    },
+    {
+      "id": "vowel-windmill",
+      "name": "元音风车岛",
+      "mapLabel": "元音",
+      "hint": "学习 a e i o u 五个短元音",
+      "icon": "🌬️"
+    },
+    {
+      "id": "pair-castle",
+      "name": "双字母城堡",
+      "mapLabel": "组合",
+      "hint": "学习 sh ch ck ng th wh 六种字母组合",
+      "icon": "🏰"
+    },
+    {
+      "id": "magic-volcano",
+      "name": "魔法火山",
+      "mapLabel": "魔法E",
+      "hint": "学习 a_e i_e o_e u_e 四种魔法 E",
+      "icon": "🌋"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "consonant.single.b",
+      "number": 1,
+      "islandId": "sound-bay",
+      "pattern": "b",
+      "ipa": "/b/",
+      "hint": "字母 b：最常见发音 /b/",
+      "words": [
+        {
+          "word": "bat",
+          "meaning": "球棒",
+          "chunks": [
+            "b",
+            "a",
+            "t"
+          ]
+        },
+        {
+          "word": "bed",
+          "meaning": "床",
+          "chunks": [
+            "b",
+            "e",
+            "d"
+          ]
+        },
+        {
+          "word": "big",
+          "meaning": "大的",
+          "chunks": [
+            "b",
+            "i",
+            "g"
+          ]
+        },
+        {
+          "word": "bug",
+          "meaning": "小虫",
+          "chunks": [
+            "b",
+            "u",
+            "g"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "consonant.single.c",
+      "number": 2,
+      "islandId": "sound-bay",
+      "pattern": "c",
+      "ipa": "/k/",
+      "hint": "字母 c：最常见发音 /k/",
+      "words": [
+        {
+          "word": "cat",
+          "meaning": "猫",
+          "chunks": [
+            "c",
+            "a",
+            "t"
+          ]
+        },
+        {
+          "word": "cap",
+          "meaning": "帽子",
+          "chunks": [
+            "c",
+            "a",
+            "p"
+          ]
+        },
+        {
+          "word": "cup",
+          "meaning": "杯子",
+          "chunks": [
+            "c",
+            "u",
+            "p"
+          ]
+        },
+        {
+          "word": "can",
+          "meaning": "能；罐子",
+          "chunks": [
+            "c",
+            "a",
+            "n"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "consonant.single.m",
+      "number": 3,
+      "islandId": "sound-bay",
+      "pattern": "m",
+      "ipa": "/m/",
+      "hint": "字母 m：最常见发音 /m/",
+      "words": [
+        {
+          "word": "map",
+          "meaning": "地图",
+          "chunks": [
+            "m",
+            "a",
+            "p"
+          ]
+        },
+        {
+          "word": "mix",
+          "meaning": "混合",
+          "chunks": [
+            "m",
+            "i",
+            "x"
+          ]
+        },
+        {
+          "word": "mud",
+          "meaning": "泥巴",
+          "chunks": [
+            "m",
+            "u",
+            "d"
+          ]
+        },
+        {
+          "word": "mask",
+          "meaning": "面具",
+          "chunks": [
+            "m",
+            "a",
+            "s",
+            "k"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "consonant.single.p",
+      "number": 4,
+      "islandId": "sound-bay",
+      "pattern": "p",
+      "ipa": "/p/",
+      "hint": "字母 p：最常见发音 /p/",
+      "words": [
+        {
+          "word": "pan",
+          "meaning": "平底锅",
+          "chunks": [
+            "p",
+            "a",
+            "n"
+          ]
+        },
+        {
+          "word": "pen",
+          "meaning": "钢笔/笔",
+          "chunks": [
+            "p",
+            "e",
+            "n"
+          ]
+        },
+        {
+          "word": "pig",
+          "meaning": "猪",
+          "chunks": [
+            "p",
+            "i",
+            "g"
+          ]
+        },
+        {
+          "word": "pot",
+          "meaning": "锅",
+          "chunks": [
+            "p",
+            "o",
+            "t"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "consonant.single.s",
+      "number": 5,
+      "islandId": "sound-bay",
+      "pattern": "s",
+      "ipa": "/s/",
+      "hint": "字母 s：最常见发音 /s/",
+      "words": [
+        {
+          "word": "sun",
+          "meaning": "太阳",
+          "chunks": [
+            "s",
+            "u",
+            "n"
+          ]
+        },
+        {
+          "word": "sip",
+          "meaning": "一小口",
+          "chunks": [
+            "s",
+            "i",
+            "p"
+          ]
+        },
+        {
+          "word": "sad",
+          "meaning": "难过的",
+          "chunks": [
+            "s",
+            "a",
+            "d"
+          ]
+        },
+        {
+          "word": "mess",
+          "meaning": "混乱，弄脏",
+          "chunks": [
+            "m",
+            "e",
+            "ss"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "consonant.single.t",
+      "number": 6,
+      "islandId": "sound-bay",
+      "pattern": "t",
+      "ipa": "/t/",
+      "hint": "字母 t：最常见发音 /t/",
+      "words": [
+        {
+          "word": "top",
+          "meaning": "顶部，陀螺",
+          "chunks": [
+            "t",
+            "o",
+            "p"
+          ]
+        },
+        {
+          "word": "ten",
+          "meaning": "十",
+          "chunks": [
+            "t",
+            "e",
+            "n"
+          ]
+        },
+        {
+          "word": "tip",
+          "meaning": "尖端，小建议",
+          "chunks": [
+            "t",
+            "i",
+            "p"
+          ]
+        },
+        {
+          "word": "tub",
+          "meaning": "澡盆，浴缸",
+          "chunks": [
+            "t",
+            "u",
+            "b"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vowel.short.a",
+      "number": 7,
+      "islandId": "vowel-windmill",
+      "pattern": "a",
+      "ipa": "/æ/",
+      "hint": "短元音 a：在闭音节（如 CVC）里常读 /æ/",
+      "words": [
+        {
+          "word": "cat",
+          "meaning": "猫",
+          "chunks": [
+            "c",
+            "a",
+            "t"
+          ]
+        },
+        {
+          "word": "map",
+          "meaning": "地图",
+          "chunks": [
+            "m",
+            "a",
+            "p"
+          ]
+        },
+        {
+          "word": "sad",
+          "meaning": "难过的",
+          "chunks": [
+            "s",
+            "a",
+            "d"
+          ]
+        },
+        {
+          "word": "bag",
+          "meaning": "包",
+          "chunks": [
+            "b",
+            "a",
+            "g"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vowel.short.e",
+      "number": 8,
+      "islandId": "vowel-windmill",
+      "pattern": "e",
+      "ipa": "/ɛ/",
+      "hint": "短元音 e：在闭音节（如 CVC）里常读 /ɛ/",
+      "words": [
+        {
+          "word": "bed",
+          "meaning": "床",
+          "chunks": [
+            "b",
+            "e",
+            "d"
+          ]
+        },
+        {
+          "word": "hen",
+          "meaning": "母鸡",
+          "chunks": [
+            "h",
+            "e",
+            "n"
+          ]
+        },
+        {
+          "word": "red",
+          "meaning": "红色的",
+          "chunks": [
+            "r",
+            "e",
+            "d"
+          ]
+        },
+        {
+          "word": "jet",
+          "meaning": "喷气式飞机",
+          "chunks": [
+            "j",
+            "e",
+            "t"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vowel.short.i",
+      "number": 9,
+      "islandId": "vowel-windmill",
+      "pattern": "i",
+      "ipa": "/ɪ/",
+      "hint": "短元音 i：在闭音节（如 CVC）里常读 /ɪ/",
+      "words": [
+        {
+          "word": "sit",
+          "meaning": "坐下",
+          "chunks": [
+            "s",
+            "i",
+            "t"
+          ]
+        },
+        {
+          "word": "pig",
+          "meaning": "猪",
+          "chunks": [
+            "p",
+            "i",
+            "g"
+          ]
+        },
+        {
+          "word": "fin",
+          "meaning": "鱼鳍",
+          "chunks": [
+            "f",
+            "i",
+            "n"
+          ]
+        },
+        {
+          "word": "lip",
+          "meaning": "嘴唇",
+          "chunks": [
+            "l",
+            "i",
+            "p"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vowel.short.o",
+      "number": 10,
+      "islandId": "vowel-windmill",
+      "pattern": "o",
+      "ipa": "/ɑ/",
+      "hint": "短元音 o：在闭音节（如 CVC）里常读 /ɑ/",
+      "words": [
+        {
+          "word": "hot",
+          "meaning": "热的",
+          "chunks": [
+            "h",
+            "o",
+            "t"
+          ]
+        },
+        {
+          "word": "mop",
+          "meaning": "拖把",
+          "chunks": [
+            "m",
+            "o",
+            "p"
+          ]
+        },
+        {
+          "word": "sock",
+          "meaning": "袜子",
+          "chunks": [
+            "s",
+            "o",
+            "ck"
+          ]
+        },
+        {
+          "word": "lot",
+          "meaning": "许多",
+          "chunks": [
+            "l",
+            "o",
+            "t"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vowel.short.u",
+      "number": 11,
+      "islandId": "vowel-windmill",
+      "pattern": "u",
+      "ipa": "/ʌ/",
+      "hint": "短元音 u：在闭音节（如 CVC）里常读 /ʌ/",
+      "words": [
+        {
+          "word": "sun",
+          "meaning": "太阳",
+          "chunks": [
+            "s",
+            "u",
+            "n"
+          ]
+        },
+        {
+          "word": "cup",
+          "meaning": "杯子",
+          "chunks": [
+            "c",
+            "u",
+            "p"
+          ]
+        },
+        {
+          "word": "bug",
+          "meaning": "小昆虫",
+          "chunks": [
+            "b",
+            "u",
+            "g"
+          ]
+        },
+        {
+          "word": "mud",
+          "meaning": "泥巴",
+          "chunks": [
+            "m",
+            "u",
+            "d"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "consonant.digraph.sh",
+      "number": 12,
+      "islandId": "pair-castle",
+      "pattern": "sh",
+      "ipa": "/ʃ/",
+      "hint": "字母组合 sh：常读 /ʃ/",
+      "words": [
+        {
+          "word": "ship",
+          "meaning": "大船",
+          "chunks": [
+            "sh",
+            "i",
+            "p"
+          ]
+        },
+        {
+          "word": "shop",
+          "meaning": "商店",
+          "chunks": [
+            "sh",
+            "o",
+            "p"
+          ]
+        },
+        {
+          "word": "fish",
+          "meaning": "鱼",
+          "chunks": [
+            "f",
+            "i",
+            "sh"
+          ]
+        },
+        {
+          "word": "wish",
+          "meaning": "愿望/许愿",
+          "chunks": [
+            "w",
+            "i",
+            "sh"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "consonant.digraph.ch",
+      "number": 13,
+      "islandId": "pair-castle",
+      "pattern": "ch",
+      "ipa": "/tʃ/",
+      "hint": "字母组合 ch：常读 /tʃ/",
+      "words": [
+        {
+          "word": "chip",
+          "meaning": "薯片",
+          "chunks": [
+            "ch",
+            "i",
+            "p"
+          ]
+        },
+        {
+          "word": "chop",
+          "meaning": "切",
+          "chunks": [
+            "ch",
+            "o",
+            "p"
+          ]
+        },
+        {
+          "word": "chin",
+          "meaning": "下巴",
+          "chunks": [
+            "ch",
+            "i",
+            "n"
+          ]
+        },
+        {
+          "word": "rich",
+          "meaning": "富有的",
+          "chunks": [
+            "r",
+            "i",
+            "ch"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "consonant.digraph.ck",
+      "number": 14,
+      "islandId": "pair-castle",
+      "pattern": "ck",
+      "ipa": "/k/",
+      "hint": "字母组合 ck：常读 /k/",
+      "words": [
+        {
+          "word": "back",
+          "meaning": "背部",
+          "chunks": [
+            "b",
+            "a",
+            "ck"
+          ]
+        },
+        {
+          "word": "neck",
+          "meaning": "脖子",
+          "chunks": [
+            "n",
+            "e",
+            "ck"
+          ]
+        },
+        {
+          "word": "kick",
+          "meaning": "踢",
+          "chunks": [
+            "k",
+            "i",
+            "ck"
+          ]
+        },
+        {
+          "word": "duck",
+          "meaning": "鸭子",
+          "chunks": [
+            "d",
+            "u",
+            "ck"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "consonant.digraph.ng",
+      "number": 15,
+      "islandId": "pair-castle",
+      "pattern": "ng",
+      "ipa": "/ŋ/",
+      "hint": "字母组合 ng：常读 /ŋ/",
+      "words": [
+        {
+          "word": "sing",
+          "meaning": "唱歌",
+          "chunks": [
+            "s",
+            "i",
+            "ng"
+          ]
+        },
+        {
+          "word": "ring",
+          "meaning": "戒指",
+          "chunks": [
+            "r",
+            "i",
+            "ng"
+          ]
+        },
+        {
+          "word": "long",
+          "meaning": "长的",
+          "chunks": [
+            "l",
+            "o",
+            "ng"
+          ]
+        },
+        {
+          "word": "king",
+          "meaning": "国王",
+          "chunks": [
+            "k",
+            "i",
+            "ng"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "consonant.digraph.th_voiceless",
+      "number": 16,
+      "islandId": "pair-castle",
+      "pattern": "th",
+      "ipa": "/θ/",
+      "hint": "字母组合 th：常读 /θ/",
+      "words": [
+        {
+          "word": "thin",
+          "meaning": "薄的/瘦的",
+          "chunks": [
+            "th",
+            "i",
+            "n"
+          ]
+        },
+        {
+          "word": "thumb",
+          "meaning": "大拇指",
+          "chunks": [
+            "th",
+            "u",
+            "mb"
+          ]
+        },
+        {
+          "word": "bath",
+          "meaning": "洗澡",
+          "chunks": [
+            "b",
+            "a",
+            "th"
+          ]
+        },
+        {
+          "word": "math",
+          "meaning": "数学",
+          "chunks": [
+            "m",
+            "a",
+            "th"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "consonant.digraph.wh",
+      "number": 17,
+      "islandId": "pair-castle",
+      "pattern": "wh",
+      "ipa": "/w/",
+      "hint": "字母组合 wh：常读 /w/",
+      "words": [
+        {
+          "word": "when",
+          "meaning": "什么时候",
+          "chunks": [
+            "wh",
+            "e",
+            "n"
+          ]
+        },
+        {
+          "word": "what",
+          "meaning": "什么",
+          "chunks": [
+            "wh",
+            "a",
+            "t"
+          ]
+        },
+        {
+          "word": "which",
+          "meaning": "哪一个",
+          "chunks": [
+            "wh",
+            "i",
+            "ch"
+          ]
+        },
+        {
+          "word": "whip",
+          "meaning": "搅拌；打发",
+          "chunks": [
+            "wh",
+            "i",
+            "p"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vowel.vce.a_e",
+      "number": 18,
+      "islandId": "magic-volcano",
+      "pattern": "a_e",
+      "ipa": "/eɪ/",
+      "hint": "魔法E（VCe）：词尾 e 通常不发音，让 a 读长音 /eɪ/",
+      "words": [
+        {
+          "word": "cake",
+          "meaning": "蛋糕",
+          "chunks": [
+            "c",
+            "a",
+            "k",
+            "e"
+          ]
+        },
+        {
+          "word": "name",
+          "meaning": "名字",
+          "chunks": [
+            "n",
+            "a",
+            "m",
+            "e"
+          ]
+        },
+        {
+          "word": "game",
+          "meaning": "游戏",
+          "chunks": [
+            "g",
+            "a",
+            "m",
+            "e"
+          ]
+        },
+        {
+          "word": "late",
+          "meaning": "迟到",
+          "chunks": [
+            "l",
+            "a",
+            "t",
+            "e"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vowel.vce.i_e",
+      "number": 19,
+      "islandId": "magic-volcano",
+      "pattern": "i_e",
+      "ipa": "/aɪ/",
+      "hint": "魔法E（VCe）：词尾 e 通常不发音，让 i 读长音 /aɪ/",
+      "words": [
+        {
+          "word": "bike",
+          "meaning": "自行车",
+          "chunks": [
+            "b",
+            "i",
+            "k",
+            "e"
+          ]
+        },
+        {
+          "word": "time",
+          "meaning": "时间",
+          "chunks": [
+            "t",
+            "i",
+            "m",
+            "e"
+          ]
+        },
+        {
+          "word": "kite",
+          "meaning": "风筝",
+          "chunks": [
+            "k",
+            "i",
+            "t",
+            "e"
+          ]
+        },
+        {
+          "word": "nine",
+          "meaning": "九",
+          "chunks": [
+            "n",
+            "i",
+            "n",
+            "e"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vowel.vce.o_e",
+      "number": 20,
+      "islandId": "magic-volcano",
+      "pattern": "o_e",
+      "ipa": "/oʊ/",
+      "hint": "魔法E（VCe）：词尾 e 通常不发音，让 o 读长音 /oʊ/",
+      "words": [
+        {
+          "word": "home",
+          "meaning": "家",
+          "chunks": [
+            "h",
+            "o",
+            "m",
+            "e"
+          ]
+        },
+        {
+          "word": "nose",
+          "meaning": "鼻子",
+          "chunks": [
+            "n",
+            "o",
+            "s",
+            "e"
+          ]
+        },
+        {
+          "word": "hope",
+          "meaning": "希望",
+          "chunks": [
+            "h",
+            "o",
+            "p",
+            "e"
+          ]
+        },
+        {
+          "word": "rope",
+          "meaning": "绳子",
+          "chunks": [
+            "r",
+            "o",
+            "p",
+            "e"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vowel.vce.u_e",
+      "number": 21,
+      "islandId": "magic-volcano",
+      "pattern": "u_e",
+      "ipa": "/juː/ or /uː/",
+      "hint": "魔法E（VCe）：词尾 e 通常不发音，让 u 读长音 /juː/ or /uː/",
+      "words": [
+        {
+          "word": "cube",
+          "meaning": "立方体",
+          "chunks": [
+            "c",
+            "u",
+            "b",
+            "e"
+          ]
+        },
+        {
+          "word": "tune",
+          "meaning": "曲子，旋律",
+          "chunks": [
+            "t",
+            "u",
+            "n",
+            "e"
+          ]
+        },
+        {
+          "word": "mule",
+          "meaning": "骡子",
+          "chunks": [
+            "m",
+            "u",
+            "l",
+            "e"
+          ]
+        },
+        {
+          "word": "tube",
+          "meaning": "管子，筒状物",
+          "chunks": [
+            "t",
+            "u",
+            "b",
+            "e"
+          ]
+        }
+      ]
+    }
+  ]
+}

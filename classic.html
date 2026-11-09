@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Phonics | 自然拼读学习工具 - 107条发音规则全掌握</title>
+
+    <!-- Meta Tags -->
+    <meta name="description" content="系统学习 107 条自然拼读规则，掌握见词能读、听音能写的核心能力。支持拼读分解、彩色高亮、语音朗读。适合英语初学者和教学工作者。">
+    <meta name="keywords" content="Phonics, 自然拼读, 英语学习, 发音规则, 拼读练习, 英语教学, 见词能读, 听音能写">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Phonics | 自然拼读学习工具 - 107条发音规则全掌握">
+    <meta property="og:description" content="系统学习 107 条自然拼读规则，掌握见词能读、听音能写的核心能力。支持拼读分解、彩色高亮、语音朗读。">
+    <meta property="og:image" content="og-image.png">
+    <meta property="og:url" content="https://phonics-app.pages.dev/">
+    <meta property="og:site_name" content="Phonics Workshop">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Phonics | 自然拼读学习工具">
+    <meta property="twitter:description" content="系统学习 107 条自然拼读规则，掌握见词能读、听音能写的核心能力">
+    <meta property="twitter:image" content="og-image.png">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://phonics-app.pages.dev/">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Phonics Workshop",
+      "description": "系统学习 107 条自然拼读规则，掌握见词能读、听音能写的核心能力",
+      "url": "https://phonics-app.pages.dev/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "zh-CN",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CNY"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Phonics Workshop"
+      },
+      "educationalLevel": "beginner",
+      "teaches": "自然拼读规则",
+      "learningResourceType": "interactive-tool"
+    }
+    </script>
+
+    <!-- AI Search Optimization -->
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="abstract" content="完整的自然拼读学习系统，包含107条发音规则、交互式练习和详细的教学指导">
+    <meta name="topic" content="自然拼读, 英语教学, 发音规则, 拼读练习">
+    <meta name="educational-level" content="beginner">
+    <meta name="content-type" content="educational-application">
+
+    <!-- Fonts: no external requests (CN-friendly) -->
+
+    <link rel="stylesheet" href="css/style.css?v=14">
+
+    <!-- Favicon & PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3b82f6">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+
+<body>
+    <!-- App Container -->
+    <div id="app">
+        <!-- Persistent Navigation Header -->
+        <header class="header">
+            <div class="container header-inner">
+                <a href="#/" class="logo">
+                    <span style="color: var(--accent)">●</span> Phonics
+                </a>
+                <nav class="nav">
+                    <a href="#/" class="nav-link active" data-page="home">首页</a>
+                    <a href="#/learn" class="nav-link" data-page="learn">开始学习</a>
+                    <a href="./index.html" class="nav-link">儿童探险版</a>
+                    <button onclick="app.toggleTheme()" class="btn-theme"
+                        style="background:none; border:none; cursor:pointer; font-size:0.85rem; margin-left:10px; color: var(--text-muted);">Dark</button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Dynamic Content -->
+        <main id="main">
+            <!-- Initial Hero State (will be replaced by JS) -->
+            <section class="hero">
+                <div class="container">
+                    <h1>自然拼读，从零开始</h1>
+                    <p>系统学习 100+ 发音规则，掌握「见词能读、听音能写」的核心能力。适合英语初学者和教学工作者。</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+                        <a href="#/learn" class="btn btn-primary">开始学习</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- SEO Entry Point - Hidden in Corner -->
+        <a href="#/learn" class="seo-link-corner">📖 查看全部规则</a>
+
+        <!-- Global Toast/Notification Area (Optional) -->
+        <div id="toast-container"></div>
+    </div>
+
+    <!-- Core Scripts -->
+    <script src="js/data-loader.js?v=14"></script>
+    <script src="js/audio-loader.js?v=14"></script>
+    <script src="js/app.js?v=14"></script>
+
+    <!-- Service Worker for Offline First -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js').catch(console.error);
+            });
+        }
+    </script>
+</body>
+
+</html>

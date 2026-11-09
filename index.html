@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#87d3fb">
+  <meta name="description" content="拼读探险岛：面向小学生的自然拼读闯关 H5。听一听、拼一拼，快乐学习英语发音。">
+  <title>拼读探险岛 · 自然拼读闯关</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icons/icon-192.png">
+  <link rel="stylesheet" href="./css/kids.css?v=15">
+  <script defer src="./js/kids-core.js?v=15"></script>
+  <script defer src="./js/kids-audio.js?v=15"></script>
+  <script defer src="./js/kids.js?v=15"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <main id="screen" aria-live="off">
+      <div class="loading-screen"><span class="loading-orbit" aria-hidden="true">✦</span><p>正在准备探险地图…</p></div>
+    </main>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js').catch(() => {}));
+    }
+  </script>
+</body>
+</html>
