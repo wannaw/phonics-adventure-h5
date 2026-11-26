@@ -1,4 +1,4 @@
-const CACHE_NAME = 'phonics-kids-cache-v17';
+const CACHE_NAME = 'phonics-kids-cache-v18';
 const AUDIO_CACHE_NAME = 'phonics-v2-audio-v1';
 const MAX_AUDIO_ENTRIES = 200;
 const MAX_AUDIO_BYTES = 30 * 1024 * 1024; // 30MB（移动端更保守，避免占满配额）
@@ -11,7 +11,7 @@ const ASSETS_TO_CACHE = [
     './classic.html',
     './css/kids.css?v=17',
     './js/kids-core.js?v=15',
-    './js/kids-audio.js?v=17',
+    './js/kids-audio.js?v=18',
     './js/kids.js?v=17',
     './data/kids-lessons.json?v=15',
     './icons/explorer-penguin.webp',
@@ -22,7 +22,9 @@ const ASSETS_TO_CACHE = [
     './js/data-loader.js?v=14',
 
     './data/rules-master.json',
-    ...['b', 'c', 'm', 'p', 's', 't', 'a', 'e', 'i', 'o', 'u', 'sh', 'ch', 'ng', 'th', 'wh', 'a_e', 'i_e', 'o_e', 'u_e', 'u_e_oo'].map(name => './audio/phonemes/' + name + '.mp3')
+    ...['b', 'c', 'm', 'p', 's', 't', 'a', 'e', 'i', 'o', 'u', 'sh', 'ch', 'ng', 'th', 'wh', 'a_e', 'i_e', 'o_e', 'u_e', 'u_e_oo'].map(name => './audio/phonemes/' + name + '.mp3'),
+    ...'back bag bat bath bed big bug cake can cap cat chin chip chop cube cup duck fin fish game hen home hot jet kick king kite lip long lot map mask math mess mix mop mud mule neck nose pan pen pig pot red rich ring sad ship shop sing sip sit sock sun ten thin thumb tip top tub tube when which whip wish'.split(' ').map(name => './audio/words/' + name + '.mp3'),
+    ...'bike hope late name nine rope time tune what'.split(' ').map(name => './audio/words/' + name + '.wav')
 ];
 
 // 安装阶段：预缓存核心资源

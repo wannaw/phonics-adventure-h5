@@ -1,6 +1,6 @@
 (function () {
-  const BASE = 'https://phonics-audio-9b1.pages.dev/audio/word/';
   const PHONEME_FILES = new Set(['b', 'c', 'm', 'p', 's', 't', 'a', 'e', 'i', 'o', 'u', 'sh', 'ch', 'ng', 'th', 'wh', 'a_e', 'i_e', 'o_e', 'u_e', 'u_e_oo']);
+  const GENERATED_WORDS = new Set(['bike', 'hope', 'late', 'name', 'nine', 'rope', 'time', 'tune', 'what']);
   let activeAudio = null;
 
   function stop() {
@@ -18,14 +18,17 @@
     }
     const utterance = new SpeechSynthesisUtterance(word);
     utterance.lang = 'en-US';
-    utterance.rate = 0.82;
+    utterance.rate = 0.72;
+    utterance.volume = 1;
     utterance.onerror = () => notify('暂时无法播放，请看着字母试着读一读');
     window.speechSynthesis.speak(utterance);
   }
 
   function playWord(word, notify) {
     stop();
-    const audio = new Audio(BASE + encodeURIComponent(word.toLowerCase()) + '.mp3');
+    const name = word.toLowerCase();
+    const audio = new Audio('./audio/words/' + encodeURIComponent(name) + (GENERATED_WORDS.has(name) ? '.wav' : '.mp3'));
+    audio.playbackRate = GENERATED_WORDS.has(name) ? 1 : 0.88;
     activeAudio = audio;
     let failed = false;
     const fallback = () => {
