@@ -1,5 +1,6 @@
 (function () {
   const BASE = 'https://phonics-audio-9b1.pages.dev/audio/word/';
+  const PHONEME_FILES = new Set(['b', 'c', 'm', 'p', 's', 't', 'a', 'e', 'i', 'o', 'u', 'sh', 'ch', 'ng', 'th', 'wh', 'a_e', 'i_e', 'o_e', 'u_e', 'u_e_oo']);
   let activeAudio = null;
 
   function stop() {
@@ -38,5 +39,21 @@
     audio.play().catch(fallback);
   }
 
-  window.KidsAudio = { playWord, stop };
+  function playPhoneme(pattern, variant, notify) {
+    const file = pattern === 'ck' ? 'c' : pattern === 'u_e' && variant === 1 ? 'u_e_oo' : pattern;
+    if (!PHONEME_FILES.has(file)) return;
+    stop();
+    const audio = new Audio('./audio/phonemes/' + file + '.mp3');
+    activeAudio = audio;
+    const failed = () => {
+      if (activeAudio !== audio) return;
+      activeAudio = null;
+      notify('发音暂时无法播放');
+    };
+    audio.addEventListener('error', failed, { once: true });
+    audio.addEventListener('ended', () => { if (activeAudio === audio) activeAudio = null; }, { once: true });
+    audio.play().catch(failed);
+  }
+
+  window.KidsAudio = { playWord, playPhoneme, stop };
 })();

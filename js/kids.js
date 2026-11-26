@@ -95,10 +95,12 @@
   function renderRule(lesson) {
     const island = islandById(lesson.islandId);
     const unlocked = core.isUnlocked(lessonIndex(lesson.id), state.lessons, state.progress);
+    const sounds = lesson.ipa.split(' or ');
+    const phonemeButtons = sounds.map((sound, index) => `<button class="phoneme-play" data-action="play-phoneme" data-pattern="${esc(lesson.pattern)}" data-variant="${index}" aria-label="播放 ${esc(lesson.pattern)} 的发音 ${esc(sound)}"><span aria-hidden="true">🔊</span> 听 ${esc(sound)}</button>`).join('');
     screen.innerHTML = `<div class="rule-page page-with-nav">${header('规则卡', '#/library')}
-      <section class="rule-hero"><span class="chapter-pill">${esc(island.mapLabel)} · ${esc(island.name)}</span><p class="eyebrow">第 ${lesson.number} / ${state.lessons.length} 张规则卡</p><h1 tabindex="-1">${esc(lesson.pattern)}</h1><strong class="rule-ipa">${esc(lesson.ipa)}</strong><p>${esc(lesson.hint)}</p></section>
+      <section class="rule-hero"><span class="chapter-pill">${esc(island.mapLabel)} · ${esc(island.name)}</span><p class="eyebrow">第 ${lesson.number} / ${state.lessons.length} 张规则卡</p><h1 tabindex="-1">${esc(lesson.pattern)}</h1><strong class="rule-ipa">${esc(lesson.ipa)}</strong><div class="phoneme-actions">${phonemeButtons}</div><p>${esc(lesson.hint)}</p></section>
       <section class="rule-examples"><h2>听一听，读一读</h2><p>点喇叭听发音，再跟着拼读。</p><div class="rule-word-list">${lesson.words.map(word => `<div class="rule-word-row"><div><strong class="rule-word">${highlightedWord(word, lesson.pattern)}</strong><span class="rule-meaning">${esc(word.meaning)}</span><small>${esc(word.chunks.join(' · '))}</small></div><button class="rule-play" data-action="play" data-word="${esc(word.word)}" aria-label="播放单词 ${esc(word.word)}">🔊</button></div>`).join('')}</div></section>
-      <div class="rule-action">${unlocked ? `<button class="primary-button" data-action="open-level" data-id="${esc(lesson.id)}">开始第 ${lesson.number} 关 →</button>` : '<p>完成前面的关卡后解锁闯关；规则卡可以随时复习。</p><a class="secondary-button" href="#/map">去探险地图 →</a>'}</div>${nav('library')}</div>`;
+      <div class="rule-action">${unlocked ? `<button class="primary-button" data-action="open-level" data-id="${esc(lesson.id)}">开始第 ${lesson.number} 关 →</button>` : '<p>完成前面的关卡后解锁闯关；规则卡可以随时复习。</p><a class="secondary-button" href="#/map">去探险地图 →</a>'}</div><p class="audio-credits-link"><a href="./audio-credits.html">发音录音来源</a></p>${nav('library')}</div>`;
   }
 
   function highlightedWord(word, pattern) {
@@ -198,6 +200,8 @@
       location.hash = `#/lesson/${encodeURIComponent(lesson.id)}`;
     } else if (action === 'play') {
       window.KidsAudio.playWord(button.dataset.word, notify);
+    } else if (action === 'play-phoneme') {
+      window.KidsAudio.playPhoneme(button.dataset.pattern, Number(button.dataset.variant), notify);
     } else if (action === 'prev-word' && lesson) {
       state.wordIndex = Math.max(0, state.wordIndex - 1);
       renderLesson(lesson);

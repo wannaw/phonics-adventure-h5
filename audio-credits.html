@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>发音录音来源 · 拼读探险岛</title>
+  <style>
+    body{max-width:700px;margin:0 auto;padding:24px 18px 48px;background:#e6f6ff;color:#174477;font:16px/1.6 system-ui,sans-serif}
+    h1{font-size:1.5rem}h2{font-size:1.1rem;margin-top:28px}a{color:#135587}li{margin:5px 0}p{margin:12px 0}
+  </style>
+</head>
+<body>
+  <p><a href="./index.html#/library">← 返回规则库</a></p>
+  <h1>发音录音来源</h1>
+  <p>规则卡使用的 21 段 MP3 录音来自 Wikimedia Commons。基础音素的 MP3 版本由 <a href="https://www.ipachart.com/">IPA Chart</a> 提供；原录音的作者及详情见下方各文件页。音频仅作格式转码，发音内容未修改。<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0 许可说明</a>。</p>
+  <h2>基础音素</h2>
+  <ul id="phonemes"></ul>
+  <h2>魔法 E</h2>
+  <ul id="long-vowels"></ul>
+  <script>
+    const phonemes = [
+      ['b /b/', 'Voiced_bilabial_plosive'], ['c、ck /k/', 'Voiceless_velar_plosive'],
+      ['m /m/', 'Bilabial_nasal'], ['p /p/', 'Voiceless_bilabial_plosive'],
+      ['s /s/', 'Voiceless_alveolar_fricative'], ['t /t/', 'Voiceless_alveolar_plosive'],
+      ['a /æ/', 'Near-open_front_unrounded_vowel'], ['e /ɛ/', 'Open-mid_front_unrounded_vowel'],
+      ['i /ɪ/', 'Near-close_near-front_unrounded_vowel'], ['o /ɑ/', 'Open_back_unrounded_vowel'],
+      ['u /ʌ/', 'Open-mid_back_unrounded_vowel'], ['sh /ʃ/', 'Voiceless_postalveolar_fricative'],
+      ['ch /tʃ/', 'Voiceless_palato-alveolar_affricate'], ['ng /ŋ/', 'Velar_nasal'],
+      ['th /θ/', 'Voiceless_dental_fricative'], ['wh /w/', 'Voiced_labio-velar_approximant'],
+      ['u_e /uː/', 'Close_back_rounded_vowel']
+    ];
+    const longVowels = [
+      ['a_e /eɪ/', 'En-us-A', '公共领域'], ['i_e /aɪ/', 'En-us-eye', '公共领域'],
+      ['o_e /oʊ/', 'En-us-o', 'CC BY-SA 3.0'], ['u_e /juː/', 'En-us-you', 'CC BY-SA 3.0']
+    ];
+    function list(target, entries, license) {
+      document.getElementById(target).innerHTML = entries.map(([label, file, ownLicense]) =>
+        `<li>${label} — <a href="https://commons.wikimedia.org/wiki/File:${file}.ogg">原文件与作者</a>（${ownLicense || license}）</li>`).join('');
+    }
+    list('phonemes', phonemes, 'CC BY-SA 3.0');
+    list('long-vowels', longVowels);
+  </script>
+</body>
+</html>

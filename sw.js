@@ -1,4 +1,4 @@
-const CACHE_NAME = 'phonics-kids-cache-v16';
+const CACHE_NAME = 'phonics-kids-cache-v17';
 const AUDIO_CACHE_NAME = 'phonics-v2-audio-v1';
 const MAX_AUDIO_ENTRIES = 200;
 const MAX_AUDIO_BYTES = 30 * 1024 * 1024; // 30MB（移动端更保守，避免占满配额）
@@ -7,11 +7,12 @@ const MAX_AUDIO_BYTES = 30 * 1024 * 1024; // 30MB（移动端更保守，避免�
 const ASSETS_TO_CACHE = [
     './',
     './index.html',
+    './audio-credits.html',
     './classic.html',
-    './css/kids.css?v=16',
+    './css/kids.css?v=17',
     './js/kids-core.js?v=15',
-    './js/kids-audio.js?v=15',
-    './js/kids.js?v=15',
+    './js/kids-audio.js?v=17',
+    './js/kids.js?v=17',
     './data/kids-lessons.json?v=15',
     './icons/explorer-penguin.webp',
     './icons/adventure-map.jpg',
@@ -20,7 +21,8 @@ const ASSETS_TO_CACHE = [
     './js/audio-loader.js?v=14',
     './js/data-loader.js?v=14',
 
-    './data/rules-master.json'
+    './data/rules-master.json',
+    ...['b', 'c', 'm', 'p', 's', 't', 'a', 'e', 'i', 'o', 'u', 'sh', 'ch', 'ng', 'th', 'wh', 'a_e', 'i_e', 'o_e', 'u_e', 'u_e_oo'].map(name => './audio/phonemes/' + name + '.mp3')
 ];
 
 // 安装阶段：预缓存核心资源
