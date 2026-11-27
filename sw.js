@@ -1,4 +1,4 @@
-const CACHE_NAME = 'phonics-kids-cache-v18';
+const CACHE_NAME = 'phonics-kids-cache-v19';
 const AUDIO_CACHE_NAME = 'phonics-v2-audio-v1';
 const MAX_AUDIO_ENTRIES = 200;
 const MAX_AUDIO_BYTES = 30 * 1024 * 1024; // 30MB（移动端更保守，避免占满配额）
@@ -10,9 +10,12 @@ const ASSETS_TO_CACHE = [
     './audio-credits.html',
     './classic.html',
     './css/kids.css?v=17',
+    './css/kids-extension.css?v=1',
     './js/kids-core.js?v=15',
-    './js/kids-audio.js?v=18',
-    './js/kids.js?v=17',
+    './js/kids-audio.js?v=19',
+    './js/kids-extension-data.js?v=1',
+    './js/kids-extension.js?v=1',
+    './js/kids.js?v=19',
     './data/kids-lessons.json?v=15',
     './icons/explorer-penguin.webp',
     './icons/adventure-map.jpg',
@@ -23,6 +26,7 @@ const ASSETS_TO_CACHE = [
 
     './data/rules-master.json',
     ...['b', 'c', 'm', 'p', 's', 't', 'a', 'e', 'i', 'o', 'u', 'sh', 'ch', 'ng', 'th', 'wh', 'a_e', 'i_e', 'o_e', 'u_e', 'u_e_oo'].map(name => './audio/phonemes/' + name + '.mp3'),
+    ...'v-long-i v-long-a v-long-o v-nurse v-short-e v-short-o v-foot v-schwa v-choice v-goat v-mouth v-near v-square v-cure c-d c-g c-f c-v c-this c-z c-vision c-h c-r c-jam c-tr c-dr c-ts c-dz c-n c-l c-y'.split(' ').map(id => './audio/ipa/' + id + '.wav'),
     ...'back bag bat bath bed big bug cake can cap cat chin chip chop cube cup duck fin fish game hen home hot jet kick king kite lip long lot map mask math mess mix mop mud mule neck nose pan pen pig pot red rich ring sad ship shop sing sip sit sock sun ten thin thumb tip top tub tube when which whip wish'.split(' ').map(name => './audio/words/' + name + '.mp3'),
     ...'bike hope late name nine rope time tune what'.split(' ').map(name => './audio/words/' + name + '.wav')
 ];
@@ -78,13 +82,38 @@ async function trimCache(cacheName, maxEntries, maxBytes) {
 }
 
 
+async function cachedAudioRange(request) {
+    const range = /^bytes=(\d+)-(\d*)$/.exec(request.headers.get('range'));
+    const cached = await caches.match(request);
+    if (!range || !cached) return fetch(request);
+
+    const audio = await cached.arrayBuffer();
+    const start = Number(range[1]);
+    const end = range[2] ? Math.min(Number(range[2]), audio.byteLength - 1) : audio.byteLength - 1;
+    if (start > end) {
+        return new Response(null, { status: 416, headers: { 'Content-Range': `bytes */${audio.byteLength}` } });
+    }
+    const headers = new Headers({
+        'Content-Type': cached.headers.get('Content-Type') || 'application/octet-stream',
+        'Content-Length': String(end - start + 1),
+        'Content-Range': `bytes ${start}-${end}/${audio.byteLength}`,
+        'Accept-Ranges': 'bytes'
+    });
+    return new Response(audio.slice(start, end + 1), { status: 206, headers });
+}
+
 // 请求拦截：缓存优先策略（针对资源），音频单独缓存并限量
 self.addEventListener('fetch', (event) => {
     if (event.request.method !== 'GET') return;
 
-    // 避免缓存 Range 请求（音频在移动端经常走分段请求，缓存会造成异常/膨胀）
+    // 从完整录音缓存读取分段，未缓存的录音仍由服务器处理。
     if (event.request.headers.has('range')) {
-        event.respondWith(fetch(event.request));
+        const url = new URL(event.request.url);
+        if (url.origin === self.location.origin && url.pathname.startsWith(new URL('./audio/', self.location.href).pathname)) {
+            event.respondWith(cachedAudioRange(event.request));
+        } else {
+            event.respondWith(fetch(event.request));
+        }
         return;
     }
 
@@ -98,7 +127,7 @@ self.addEventListener('fetch', (event) => {
         event.respondWith(
             (async () => {
                 const audioCache = await caches.open(AUDIO_CACHE_NAME);
-                const cached = await audioCache.match(event.request);
+                const cached = await audioCache.match(event.request) || await caches.match(event.request);
                 if (cached) return cached;
 
                 const response = await fetch(event.request);

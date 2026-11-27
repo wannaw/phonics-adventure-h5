@@ -37,6 +37,7 @@
       <a href="#/home" ${active === 'home' ? 'aria-current="page"' : ''}><span aria-hidden="true">⌂</span>首页</a>
       <a href="#/map" ${active === 'map' ? 'aria-current="page"' : ''}><span aria-hidden="true">◈</span>地图</a>
       <a href="#/library" ${active === 'library' ? 'aria-current="page"' : ''}><span aria-hidden="true">▤</span>规则库</a>
+      <a href="#/extension" ${active === 'extension' ? 'aria-current="page"' : ''}><span aria-hidden="true">✿</span>拓展学习</a>
     </nav>`;
   }
 
@@ -81,23 +82,33 @@
     if (openIsland) screen.querySelector('.drawer-close')?.focus({ preventScroll: true });
   }
 
-  function renderLibrary() {
-    const groups = state.islands.map((island, index) => {
+  function renderLibrary(filter) {
+    const filters = [
+      ['all', '全部', state.islands.map(island => island.id)],
+      ['vowels', '元音字母', ['vowel-windmill']],
+      ['consonants', '辅音字母', ['sound-bay']],
+      ['combinations', '字母组合', ['pair-castle', 'magic-volcano']]
+    ];
+    const [selected, , islandIds] = filters.find(([key]) => key === filter) || filters[0];
+    const tabs = filters.map(([key, label]) => `<a href="${key === 'all' ? '#/library' : `#/library/${key}`}" ${selected === key ? 'aria-current="page"' : ''}>${label}</a>`).join('');
+    const groups = state.islands.filter(island => islandIds.includes(island.id)).map(island => {
+      const index = state.islands.indexOf(island);
       const lessons = state.lessons.filter(lesson => lesson.islandId === island.id);
       return `<details class="library-group" open><summary><span class="library-group-number">${String(index + 1).padStart(2, '0')}</span><span class="library-group-title"><strong>${esc(island.mapLabel)} · ${esc(island.name)}</strong><small>${esc(island.hint)}</small></span><span class="library-group-count">${lessons.length} 条</span></summary>
-        <div class="library-nodes">${lessons.map(lesson => `<a class="library-node" href="#/rule/${encodeURIComponent(lesson.id)}" aria-label="查看 ${esc(lesson.pattern)} 规则"><strong>${esc(lesson.pattern)}</strong><span>${esc(lesson.ipa)}</span><small>听读 →</small></a>`).join('')}</div></details>`;
+        <div class="library-nodes">${lessons.map(lesson => `<a class="library-node" href="#/rule/${encodeURIComponent(lesson.id)}${selected === 'all' ? '' : '/' + selected}" aria-label="查看 ${esc(lesson.pattern)} 规则"><strong>${esc(lesson.pattern)}</strong><span>${esc(lesson.ipa)}</span><small>听读 →</small></a>`).join('')}</div></details>`;
     }).join('');
-    screen.innerHTML = `<div class="library-page page-with-nav">${header('拼读规则库')}
+    screen.innerHTML = `<div class="library-page page-with-nav">${header('拼读规则库', selected === 'all' ? '#/map' : '#/extension')}
       <section class="library-intro"><p class="eyebrow">SOUND COLLECTION</p><h1 tabindex="-1">找到想学的声音</h1><p>点开一张规则卡，听单词、看拼读，再去闯关。</p></section>
-      <div class="library-groups">${groups}</div><a class="library-advanced" href="./classic.html#/learn">查看完整 107 条进阶规则 <span aria-hidden="true">→</span></a>${nav('library')}</div>`;
+      <nav class="extension-library-filter" aria-label="按拼写分类">${tabs}</nav><div class="library-groups">${groups}</div><a class="library-advanced" href="./classic.html#/learn">查看完整 107 条进阶规则 <span aria-hidden="true">→</span></a>${nav('library')}</div>`;
   }
 
-  function renderRule(lesson) {
+  function renderRule(lesson, from) {
+    const back = ['vowels', 'consonants', 'combinations'].includes(from) ? `#/library/${from}` : '#/library';
     const island = islandById(lesson.islandId);
     const unlocked = core.isUnlocked(lessonIndex(lesson.id), state.lessons, state.progress);
     const sounds = lesson.ipa.split(' or ');
     const phonemeButtons = sounds.map((sound, index) => `<button class="phoneme-play" data-action="play-phoneme" data-pattern="${esc(lesson.pattern)}" data-variant="${index}" aria-label="播放 ${esc(lesson.pattern)} 的发音 ${esc(sound)}"><span aria-hidden="true">🔊</span> 听 ${esc(sound)}</button>`).join('');
-    screen.innerHTML = `<div class="rule-page page-with-nav">${header('规则卡', '#/library')}
+    screen.innerHTML = `<div class="rule-page page-with-nav">${header('规则卡', back)}
       <section class="rule-hero"><span class="chapter-pill">${esc(island.mapLabel)} · ${esc(island.name)}</span><p class="eyebrow">第 ${lesson.number} / ${state.lessons.length} 张规则卡</p><h1 tabindex="-1">${esc(lesson.pattern)}</h1><strong class="rule-ipa">${esc(lesson.ipa)}</strong><div class="phoneme-actions">${phonemeButtons}</div><p>${esc(lesson.hint)}</p></section>
       <section class="rule-examples"><h2>听一听，读一读</h2><p>点喇叭听发音，再跟着拼读。</p><div class="rule-word-list">${lesson.words.map(word => `<div class="rule-word-row"><div><strong class="rule-word">${highlightedWord(word, lesson.pattern)}</strong><span class="rule-meaning">${esc(word.meaning)}</span><small>${esc(word.chunks.join(' · '))}</small></div><button class="rule-play" data-action="play" data-word="${esc(word.word)}" aria-label="播放单词 ${esc(word.word)}">🔊</button></div>`).join('')}</div></section>
       <div class="rule-action">${unlocked ? `<button class="primary-button" data-action="open-level" data-id="${esc(lesson.id)}">开始第 ${lesson.number} 关 →</button>` : '<p>完成前面的关卡后解锁闯关；规则卡可以随时复习。</p><a class="secondary-button" href="#/map">去探险地图 →</a>'}</div><p class="audio-credits-link"><a href="./audio-credits.html">发音录音来源</a></p>${nav('library')}</div>`;
@@ -151,14 +162,20 @@
 
   function route() {
     window.KidsAudio.stop();
-    const [, page = 'home', encodedId] = (location.hash || '#/home').split('/');
+    const [, page = 'home', encodedId, encodedWord] = (location.hash || '#/home').split('/');
     let id = null;
-    try { id = encodedId ? decodeURIComponent(encodedId) : null; } catch { /* Invalid hash falls back to map. */ }
+    let word = null;
+    try {
+      id = encodedId ? decodeURIComponent(encodedId) : null;
+      word = encodedWord ? decodeURIComponent(encodedWord) : null;
+    } catch { /* Invalid slugs fall back to the corresponding list. */ }
+    const extension = window.KidsExtension.render(page, id, word, { header, nav, esc, lessons: state.lessons });
     const lesson = id ? lessonById(id) : null;
-    if (page === 'home') renderHome();
+    if (extension) screen.innerHTML = extension;
+    else if (page === 'home') renderHome();
     else if (page === 'map') renderMap();
-    else if (page === 'library') renderLibrary();
-    else if (page === 'rule' && lesson) renderRule(lesson);
+    else if (page === 'library') renderLibrary(id);
+    else if (page === 'rule' && lesson) renderRule(lesson, word);
     else if (lesson && core.isUnlocked(lessonIndex(id), state.lessons, state.progress)) {
       if (state.lessonId !== id) {
         state.lessonId = id;
@@ -200,6 +217,15 @@
       location.hash = `#/lesson/${encodeURIComponent(lesson.id)}`;
     } else if (action === 'play') {
       window.KidsAudio.playWord(button.dataset.word, notify);
+    } else if (action === 'extension-word') {
+      const text = button.dataset.word;
+      const recorded = state.lessons.some(entry => entry.words.some(word => word.word === text));
+      if (recorded && !button.dataset.accent) window.KidsAudio.playWord(text, notify);
+      else window.KidsAudio.playSpeech(text, notify, button.dataset.accent);
+    } else if (action === 'extension-sentence') {
+      window.KidsAudio.playSpeech(button.dataset.word, notify);
+    } else if (action === 'play-ipa') {
+      window.KidsAudio.playIpa(button.dataset.id, notify);
     } else if (action === 'play-phoneme') {
       window.KidsAudio.playPhoneme(button.dataset.pattern, Number(button.dataset.variant), notify);
     } else if (action === 'prev-word' && lesson) {
