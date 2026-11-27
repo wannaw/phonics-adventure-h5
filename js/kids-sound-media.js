@@ -5,7 +5,7 @@
   function publicMedia(value) {
     try {
       const url = new URL(value);
-      if (url.origin === 'https://cdn.beijinxuetang.com' && url.pathname.startsWith('/static/')) return url.href;
+      if (url.origin === 'https://cdn.beijinxuetang.com' && ['/static/', '/pindu/', '/uploads/wordEnglish/image/'].some(prefix => url.pathname.startsWith(prefix))) return url.href;
     } catch { /* The source has no media for this field. */ }
     return '';
   }
@@ -32,13 +32,35 @@
       button.className = 'rule-play';
       button.dataset.action = 'course-audio';
       button.dataset.media = `example-${item.id}`;
-      button.dataset.fallback = item.word;
+      button.disabled = !publicMedia(item.audio);
       button.setAttribute('aria-label', `播放 ${item.word}`);
       button.textContent = '🔊';
       row.append(labels, button);
       return row;
     });
     list.replaceChildren(...rows);
+  }
+
+  function attachVideo(panel, url, status, poster) {
+    if (!panel || !url) return;
+    const player = panel.querySelector('video');
+    player.addEventListener('play', () => window.KidsAudio.stop());
+    player.addEventListener('error', () => { panel.hidden = true; status.textContent = '原版视频暂时无法播放。'; });
+    if (poster) player.poster = poster;
+    player.src = url;
+    panel.hidden = false;
+  }
+
+  async function loadLetterVideo(session, status) {
+    const panel = session.scope.querySelector('[data-course-letter-video]');
+    if (!panel) return;
+    try {
+      const response = await fetch(api + 'zrpd/index', { signal: session.controller.signal, credentials: 'omit', cache: 'no-store' });
+      const { data } = response.ok ? await response.json() : {};
+      const letter = data?.list.flatMap(group => group.letter).find(entry => String(entry.id) === session.scope.dataset.letterId);
+      if (current !== session || !letter) return;
+      attachVideo(panel, publicMedia(letter.video_path), status, publicMedia(letter.video_cover));
+    } catch { /* The pronunciation content is usable without the supplementary video. */ }
   }
 
   async function load(session) {
@@ -55,18 +77,23 @@
       if (current !== session) return;
       session.audio.set('main', publicMedia(kind === 'ipa' ? entry.audio : entry.sound));
       for (const item of entry.symbol_word || []) session.audio.set(`example-${item.id}`, publicMedia(item.audio));
-      if (kind === 'ipa' && !session.request) updateExamples(scope, entry.symbol_word);
-      for (const item of entry.word || []) session.audio.set(`word-${item.id}`, publicMedia(item.sound));
-      for (const item of entry.sentence || []) session.audio.set(`sentence-${item.id}`, publicMedia(item.sound_man) || publicMedia(item.sound_woman));
-      const video = scope.querySelector('[data-course-video]');
-      const clip = publicMedia(entry.mp4);
-      if (video && clip) {
-        const player = video.querySelector('video');
-        player.src = clip;
-        video.hidden = false;
-        player.addEventListener('play', () => window.KidsAudio.stop());
-        player.addEventListener('error', () => { video.hidden = true; status.textContent = '原版视频暂时无法播放。'; });
+      if (kind === 'ipa') updateExamples(scope, entry.symbol_word);
+      for (const item of entry.word || []) {
+        session.audio.set(`word-${item.id}`, publicMedia(item.sound));
+        const image = scope.querySelector(`[data-course-word-image="${Number(item.id)}"]`);
+        const url = publicMedia(item.image);
+        if (image && url) {
+          image.addEventListener('error', () => { image.hidden = true; });
+          image.src = url;
+          image.hidden = false;
+        }
       }
+      for (const item of entry.sentence || []) {
+        session.audio.set(`sentence-${item.id}-male`, publicMedia(item.sound_man));
+        session.audio.set(`sentence-${item.id}-female`, publicMedia(item.sound_woman));
+        session.audio.set(`sentence-${item.id}`, publicMedia(item.sound_man) || publicMedia(item.sound_woman));
+      }
+      attachVideo(scope.querySelector('[data-course-video]'), publicMedia(entry.mp4), status);
       const image = scope.querySelector('[data-course-mouth]');
       const animation = publicMedia(entry.image);
       if (image && animation) {
@@ -76,7 +103,11 @@
         image.src = animation;
         image.hidden = false;
       }
-      status.textContent = '';
+      for (const button of scope.querySelectorAll('button[data-action="course-audio"]')) {
+        button.disabled = !session.audio.get(button.dataset.media);
+        if (button.disabled) button.title = '原版录音暂不可用';
+      }
+      status.textContent = session.audio.get('main') ? '音源：倍进学堂原版' : '原版发音暂时无法加载。';
     } catch {
       if (current === session) status.textContent = '原版媒体暂时无法连接，仍可查看课程内容。';
     } finally {
@@ -84,38 +115,57 @@
     }
   }
 
+  let categoryImages;
+
+  async function attachPictureCategories(screen) {
+    const images = [...screen.querySelectorAll('[data-picture-category-id]')];
+    if (!images.length || !navigator.onLine) return;
+    if (!categoryImages) {
+      categoryImages = fetch(api + 'kantu/unitList', { credentials: 'omit', cache: 'no-store', signal: AbortSignal.timeout(8000) }).then(async response => {
+        const result = response.ok ? await response.json() : {};
+        if (result.code !== 0 || !Array.isArray(result.data?.list)) throw new Error('Category images unavailable');
+        return new Map(result.data.list.flatMap(unit => unit.category.map(category => [String(category.id), publicMedia(category.image)])));
+      });
+      const request = categoryImages;
+      setTimeout(() => { if (categoryImages === request) categoryImages = null; }, 300000);
+    }
+    try {
+      const sources = await categoryImages;
+      for (const image of images) {
+        const url = sources.get(image.dataset.pictureCategoryId);
+        if (!image.isConnected || !url) continue;
+        image.addEventListener('load', () => { image.classList.add('is-loaded'); image.nextElementSibling.hidden = true; }, { once: true });
+        image.src = url;
+      }
+    } catch { categoryImages = null; }
+  }
+
   function attach(screen) {
     if (current) {
       current.controller.abort();
-      current.scope.querySelector('video')?.pause();
+      for (const video of current.scope.querySelectorAll('video')) video.pause();
       current = null;
     }
+    attachPictureCategories(screen);
     const scope = screen.querySelector('[data-sound-course]');
     if (!scope) return;
     const session = { scope, kind: scope.dataset.soundCourse, id: Number(scope.dataset.sourceId), controller: new AbortController(), audio: new Map() };
     current = session;
-    session.pending = load(session);
+    for (const button of scope.querySelectorAll('button[data-action="course-audio"]')) button.disabled = true;
+    load(session);
+    loadLetterVideo(session, scope.querySelector('.sound-status'));
   }
 
-  async function play(button, notify) {
+  function play(button, notify) {
     const session = current;
-    if (!session || !session.scope.contains(button)) return;
-    session.request = button;
-    session.scope.querySelector('video')?.pause();
-    const key = button.dataset.media;
-    if (session.pending) await session.pending;
-    if (current !== session || session.request !== button) return;
-    const fallback = () => {
-      const text = button.dataset.fallback;
-      if (!text) { notify('暂时无法播放这段发音'); return; }
-      if (key !== 'main') { window.KidsAudio.playSpeech(text, notify, 'en-GB'); return; }
-      const item = window.KidsExtensionData.ipa.find(entry => entry.id === text);
-      if (item?.pattern) window.KidsAudio.playPhoneme(item.pattern, item.variant || 0, notify);
-      else if (item) window.KidsAudio.playIpa(item.id, notify);
-    };
-    const url = session.audio.get(key);
-    if (url) window.KidsAudio.playCourseMedia(url, fallback);
-    else fallback();
+    const url = session?.audio.get(button.dataset.media);
+    if (!url || !session.scope.contains(button)) return;
+    for (const player of session.scope.querySelectorAll('video')) player.pause();
+    window.KidsAudio.playCourseMedia(url, () => {
+      const message = '原版录音暂时无法播放，请联网后重试。';
+      session.scope.querySelector('.sound-status').textContent = message;
+      notify(message);
+    });
   }
 
   function replay(button) {

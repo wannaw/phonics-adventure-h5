@@ -1,4 +1,4 @@
-const CACHE_NAME = 'phonics-kids-cache-v21';
+const CACHE_NAME = 'phonics-kids-cache-v22';
 const AUDIO_CACHE_NAME = 'phonics-v2-audio-v1';
 const MAX_AUDIO_ENTRIES = 200;
 const MAX_AUDIO_BYTES = 30 * 1024 * 1024; // 30MB（移动端更保守，避免占满配额）
@@ -10,16 +10,16 @@ const ASSETS_TO_CACHE = [
     './audio-credits.html',
     './classic.html',
     './css/kids.css?v=17',
-    './css/kids-extension.css?v=1',
-    './css/kids-sounds.css?v=1',
+    './css/kids-extension.css?v=2',
+    './css/kids-sounds.css?v=2',
     './js/kids-core.js?v=15',
     './js/kids-audio.js?v=20',
-    './js/kids-extension-data.js?v=2',
-    './js/kids-extension.js?v=3',
+    './js/kids-extension-data.js?v=3',
+    './js/kids-extension.js?v=4',
     './js/kids-sounds-data.js?v=1',
-    './js/kids-sounds.js?v=1',
-    './js/kids-sound-media.js?v=1',
-    './js/kids.js?v=20',
+    './js/kids-sounds.js?v=2',
+    './js/kids-sound-media.js?v=2',
+    './js/kids.js?v=21',
     './data/kids-lessons.json?v=15',
     './icons/explorer-penguin.webp',
     './icons/adventure-map.jpg',

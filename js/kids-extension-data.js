@@ -59,7 +59,7 @@ window.KidsExtensionData = {
 
   pictureUnits: [
     { id: "unit-1", title: "第一单元 食品和饮品", categories: [
-      {"id": "fruit", "title": "水果", "icon": "🍇", "words": [
+      {"id": "fruit", "title": "水果", "sourceId": 1, "icon": "🍇", "words": [
         {"word": "fruit", "meaning": "水果", "icon": "🍓"},
         {"word": "apple", "meaning": "苹果", "icon": "🍎"},
         {"word": "pear", "meaning": "梨", "icon": "🍐"},
@@ -75,7 +75,7 @@ window.KidsExtensionData = {
         {"word": "peach", "meaning": "桃子", "icon": "🍑"},
         {"word": "pineapple", "meaning": "菠萝", "icon": "🍍"},
       ] },
-      {"id": "vegetables", "title": "蔬菜", "icon": "🥦", "words": [
+      {"id": "vegetables", "title": "蔬菜", "sourceId": 3, "icon": "🥦", "words": [
         {"word": "vegetable", "meaning": "蔬菜", "icon": "🥦"},
         {"word": "potato", "meaning": "土豆", "icon": "🥔"},
         {"word": "tomato", "meaning": "番茄", "icon": "🍅"},
@@ -88,7 +88,7 @@ window.KidsExtensionData = {
         {"word": "onion", "meaning": "洋葱", "icon": "🧅"},
         {"word": "cabbage", "meaning": "卷心菜", "icon": "🥬"},
       ] },
-      {"id": "drinks", "title": "饮品", "icon": "🧃", "words": [
+      {"id": "drinks", "title": "饮品", "sourceId": 4, "icon": "🧃", "words": [
         {"word": "drink", "meaning": "饮料", "icon": "🥤"},
         {"word": "water", "meaning": "水", "icon": "💧"},
         {"word": "juice", "meaning": "果汁", "icon": "🧃"},
@@ -100,7 +100,7 @@ window.KidsExtensionData = {
         {"word": "lemonade", "meaning": "柠檬汽水", "icon": "🍋"},
         {"word": "wine", "meaning": "葡萄酒", "icon": "🍷"},
       ] },
-      {"id": "meat", "title": "肉类", "icon": "🥩", "words": [
+      {"id": "meat", "title": "肉类", "sourceId": 5, "icon": "🥩", "words": [
         {"word": "meat", "meaning": "肉", "icon": "🥩"},
         {"word": "chicken", "meaning": "鸡肉", "icon": "🍗"},
         {"word": "beef", "meaning": "牛肉", "icon": "🥩"},
@@ -110,7 +110,7 @@ window.KidsExtensionData = {
         {"word": "seafood", "meaning": "海鲜", "icon": "🦐"},
         {"word": "fish", "meaning": "鱼", "icon": "🐟"},
       ] },
-      {"id": "staples", "title": "主食", "icon": "🍚", "words": [
+      {"id": "staples", "title": "主食", "sourceId": 6, "icon": "🍚", "words": [
         {"word": "rice", "meaning": "米饭", "icon": "🍚"},
         {"word": "dumpling", "meaning": "饺子", "icon": "🥟"},
         {"word": "noodle", "meaning": "面条", "icon": "🍜"},
@@ -125,7 +125,7 @@ window.KidsExtensionData = {
         {"word": "hot pot", "meaning": "火锅", "icon": "🍲"},
         {"word": "hot dog", "meaning": "热狗", "icon": "🌭"},
       ] },
-      {"id": "other-food", "title": "其他食物", "icon": "🥗", "words": [
+      {"id": "other-food", "title": "其他食物", "sourceId": 7, "icon": "🥗", "words": [
         {"word": "food", "meaning": "食物", "icon": "🍱"},
         {"word": "snack", "meaning": "零食", "icon": "🥪"},
         {"word": "egg", "meaning": "鸡蛋", "icon": "🥚"},
@@ -143,15 +143,15 @@ window.KidsExtensionData = {
         {"word": "cookie", "meaning": "饼干", "icon": "🍪"},
         {"word": "ice cream", "meaning": "冰淇淋", "icon": "🍦"},
       ] },
-      {"id": "meals", "title": "三餐", "icon": "🍽️", "words": [
+      {"id": "meals", "title": "三餐", "sourceId": 8, "icon": "🍽️", "words": [
         {"word": "breakfast", "meaning": "早餐", "icon": "🍳"},
         {"word": "lunch", "meaning": "午餐", "icon": "🍱"},
         {"word": "dinner", "meaning": "正餐；晚餐", "icon": "🍽️"},
         {"word": "supper", "meaning": "晚餐", "icon": "🍲"},
       ] },
-      {"id": "other-words", "title": "其他词", "icon": "🥪", "words": [
+      {"id": "other-words", "title": "其他词", "sourceId": 9, "icon": "🥪", "words": [
       ] },
-      {"id": "related-words", "title": "相关词", "icon": "📚", "words": [
+      {"id": "related-words", "title": "相关词", "sourceId": 12, "icon": "📚", "words": [
         {"word": "eat", "meaning": "吃", "icon": "🍴"},
         {"word": "heat", "meaning": "热；加热", "icon": "♨️"},
         {"word": "delicious", "meaning": "美味的", "icon": "🍲"},
@@ -170,103 +170,103 @@ window.KidsExtensionData = {
       ] },
     ] },
     { id: "unit-2", title: "第二单元 自然界和植物", categories: [
-      {"id": "category-2", "title": "自然", "icon": "📖", "words": null },
-      {"id": "category-10", "title": "动物", "icon": "📖", "words": null },
-      {"id": "category-13", "title": "动物相关词", "icon": "📖", "words": null },
-      {"id": "category-14", "title": "植物", "icon": "📖", "words": null },
-      {"id": "category-15", "title": "植物相关词", "icon": "📖", "words": null },
+      {"id": "category-2", "title": "自然", "sourceId": 2, "icon": "📖", "words": null },
+      {"id": "category-10", "title": "动物", "sourceId": 10, "icon": "📖", "words": null },
+      {"id": "category-13", "title": "动物相关词", "sourceId": 13, "icon": "📖", "words": null },
+      {"id": "category-14", "title": "植物", "sourceId": 14, "icon": "📖", "words": null },
+      {"id": "category-15", "title": "植物相关词", "sourceId": 15, "icon": "📖", "words": null },
     ] },
     { id: "unit-3", title: "第三单元 生活周边事物", categories: [
-      {"id": "category-16", "title": "玩具", "icon": "📖", "words": null },
-      {"id": "category-17", "title": "乐器", "icon": "📖", "words": null },
-      {"id": "category-18", "title": "餐具", "icon": "📖", "words": null },
-      {"id": "category-19", "title": "家具", "icon": "📖", "words": null },
-      {"id": "category-20", "title": "日常用品", "icon": "📖", "words": null },
-      {"id": "category-21", "title": "纸质/文字类日常事物", "icon": "📖", "words": null },
-      {"id": "category-22", "title": "相关词", "icon": "📖", "words": null },
+      {"id": "category-16", "title": "玩具", "sourceId": 16, "icon": "📖", "words": null },
+      {"id": "category-17", "title": "乐器", "sourceId": 17, "icon": "📖", "words": null },
+      {"id": "category-18", "title": "餐具", "sourceId": 18, "icon": "📖", "words": null },
+      {"id": "category-19", "title": "家具", "sourceId": 19, "icon": "📖", "words": null },
+      {"id": "category-20", "title": "日常用品", "sourceId": 20, "icon": "📖", "words": null },
+      {"id": "category-21", "title": "纸质/文字类日常事物", "sourceId": 21, "icon": "📖", "words": null },
+      {"id": "category-22", "title": "相关词", "sourceId": 22, "icon": "📖", "words": null },
     ] },
     { id: "unit-5", title: "第四单元 学校生活", categories: [
-      {"id": "category-23", "title": "学习用品", "icon": "📖", "words": null },
-      {"id": "category-24", "title": "学习内容", "icon": "📖", "words": null },
-      {"id": "category-25", "title": "学习相关词", "icon": "📖", "words": null },
+      {"id": "category-23", "title": "学习用品", "sourceId": 23, "icon": "📖", "words": null },
+      {"id": "category-24", "title": "学习内容", "sourceId": 24, "icon": "📖", "words": null },
+      {"id": "category-25", "title": "学习相关词", "sourceId": 25, "icon": "📖", "words": null },
     ] },
     { id: "unit-6", title: "第五单元 人际关系", categories: [
-      {"id": "category-26", "title": "家庭成员", "icon": "📖", "words": null },
-      {"id": "category-27", "title": "人物", "icon": "📖", "words": null },
+      {"id": "category-26", "title": "家庭成员", "sourceId": 26, "icon": "📖", "words": null },
+      {"id": "category-27", "title": "人物", "sourceId": 27, "icon": "📖", "words": null },
     ] },
     { id: "unit-7", title: "第六单元 职业", categories: [
-      {"id": "category-28", "title": "职业", "icon": "📖", "words": null },
+      {"id": "category-28", "title": "职业", "sourceId": 28, "icon": "📖", "words": null },
     ] },
     { id: "unit-8", title: "第七单元 身体和疾病", categories: [
-      {"id": "category-29", "title": "身体", "icon": "📖", "words": null },
-      {"id": "category-30", "title": "疾病", "icon": "📖", "words": null },
+      {"id": "category-29", "title": "身体", "sourceId": 29, "icon": "📖", "words": null },
+      {"id": "category-30", "title": "疾病", "sourceId": 30, "icon": "📖", "words": null },
     ] },
     { id: "unit-9", title: "第八单元 服饰", categories: [
-      {"id": "category-31", "title": "衣服", "icon": "📖", "words": null },
-      {"id": "category-32", "title": "配饰", "icon": "📖", "words": null },
-      {"id": "category-33", "title": "相关词", "icon": "📖", "words": null },
+      {"id": "category-31", "title": "衣服", "sourceId": 31, "icon": "📖", "words": null },
+      {"id": "category-32", "title": "配饰", "sourceId": 32, "icon": "📖", "words": null },
+      {"id": "category-33", "title": "相关词", "sourceId": 33, "icon": "📖", "words": null },
     ] },
     { id: "unit-10", title: "第九单元 交通", categories: [
-      {"id": "category-34", "title": "交通工具", "icon": "📖", "words": null },
-      {"id": "category-35", "title": "相关词", "icon": "📖", "words": null },
+      {"id": "category-34", "title": "交通工具", "sourceId": 34, "icon": "📖", "words": null },
+      {"id": "category-35", "title": "相关词", "sourceId": 35, "icon": "📖", "words": null },
     ] },
     { id: "unit-11", title: "第十单元 方位和距离", categories: [
-      {"id": "category-36", "title": "方位", "icon": "📖", "words": null },
-      {"id": "category-37", "title": "距离", "icon": "📖", "words": null },
+      {"id": "category-36", "title": "方位", "sourceId": 36, "icon": "📖", "words": null },
+      {"id": "category-37", "title": "距离", "sourceId": 37, "icon": "📖", "words": null },
     ] },
     { id: "unit-12", title: "第十一单元 场所和建筑", categories: [
-      {"id": "category-38", "title": "场所", "icon": "📖", "words": null },
-      {"id": "category-39", "title": "建筑", "icon": "📖", "words": null },
-      {"id": "category-40", "title": "相关词", "icon": "📖", "words": null },
+      {"id": "category-38", "title": "场所", "sourceId": 38, "icon": "📖", "words": null },
+      {"id": "category-39", "title": "建筑", "sourceId": 39, "icon": "📖", "words": null },
+      {"id": "category-40", "title": "相关词", "sourceId": 40, "icon": "📖", "words": null },
     ] },
     { id: "unit-13", title: "第十二单元 运动和娱乐活动", categories: [
-      {"id": "category-41", "title": "球类", "icon": "📖", "words": null },
-      {"id": "category-42", "title": "运动", "icon": "📖", "words": null },
-      {"id": "category-43", "title": "娱乐活动", "icon": "📖", "words": null },
-      {"id": "category-44", "title": "相关词", "icon": "📖", "words": null },
+      {"id": "category-41", "title": "球类", "sourceId": 41, "icon": "📖", "words": null },
+      {"id": "category-42", "title": "运动", "sourceId": 42, "icon": "📖", "words": null },
+      {"id": "category-43", "title": "娱乐活动", "sourceId": 43, "icon": "📖", "words": null },
+      {"id": "category-44", "title": "相关词", "sourceId": 44, "icon": "📖", "words": null },
     ] },
     { id: "unit-14", title: "第十三单元 动作", categories: [
-      {"id": "category-45", "title": "动作", "icon": "📖", "words": null },
+      {"id": "category-45", "title": "动作", "sourceId": 45, "icon": "📖", "words": null },
     ] },
     { id: "unit-15", title: "第十四单元 特殊动词", categories: [
-      {"id": "category-46", "title": "情态动词", "icon": "📖", "words": null },
-      {"id": "category-47", "title": "感官动词", "icon": "📖", "words": null },
-      {"id": "category-48", "title": "BE动词", "icon": "📖", "words": null },
-      {"id": "category-49", "title": "助动词", "icon": "📖", "words": null },
-      {"id": "category-50", "title": "其余常见系动词", "icon": "📖", "words": null },
+      {"id": "category-46", "title": "情态动词", "sourceId": 46, "icon": "📖", "words": null },
+      {"id": "category-47", "title": "感官动词", "sourceId": 47, "icon": "📖", "words": null },
+      {"id": "category-48", "title": "BE动词", "sourceId": 48, "icon": "📖", "words": null },
+      {"id": "category-49", "title": "助动词", "sourceId": 49, "icon": "📖", "words": null },
+      {"id": "category-50", "title": "其余常见系动词", "sourceId": 50, "icon": "📖", "words": null },
     ] },
     { id: "unit-16", title: "第十五单元 状态和态度", categories: [
-      {"id": "category-51", "title": "状态", "icon": "📖", "words": null },
-      {"id": "category-52", "title": "态度", "icon": "📖", "words": null },
+      {"id": "category-51", "title": "状态", "sourceId": 51, "icon": "📖", "words": null },
+      {"id": "category-52", "title": "态度", "sourceId": 52, "icon": "📖", "words": null },
     ] },
     { id: "unit-17", title: "第十六单元 性格和品质", categories: [
-      {"id": "category-53", "title": "性格和品质", "icon": "📖", "words": null },
+      {"id": "category-53", "title": "性格和品质", "sourceId": 53, "icon": "📖", "words": null },
     ] },
     { id: "unit-18", title: "第十七单元 外貌", categories: [
-      {"id": "category-54", "title": "外貌", "icon": "📖", "words": null },
+      {"id": "category-54", "title": "外貌", "sourceId": 54, "icon": "📖", "words": null },
     ] },
     { id: "unit-19", title: "第十八单元 天气和颜色", categories: [
-      {"id": "category-55", "title": "天气", "icon": "📖", "words": null },
-      {"id": "category-56", "title": "颜色", "icon": "📖", "words": null },
+      {"id": "category-55", "title": "天气", "sourceId": 55, "icon": "📖", "words": null },
+      {"id": "category-56", "title": "颜色", "sourceId": 56, "icon": "📖", "words": null },
     ] },
     { id: "unit-20", title: "第十九单元 时间", categories: [
-      {"id": "category-57", "title": "时间", "icon": "📖", "words": null },
-      {"id": "category-58", "title": "星期", "icon": "📖", "words": null },
-      {"id": "category-59", "title": "月份", "icon": "📖", "words": null },
-      {"id": "category-60", "title": "四季", "icon": "📖", "words": null },
-      {"id": "category-61", "title": "节假日", "icon": "📖", "words": null },
-      {"id": "category-62", "title": "相关词", "icon": "📖", "words": null },
+      {"id": "category-57", "title": "时间", "sourceId": 57, "icon": "📖", "words": null },
+      {"id": "category-58", "title": "星期", "sourceId": 58, "icon": "📖", "words": null },
+      {"id": "category-59", "title": "月份", "sourceId": 59, "icon": "📖", "words": null },
+      {"id": "category-60", "title": "四季", "sourceId": 60, "icon": "📖", "words": null },
+      {"id": "category-61", "title": "节假日", "sourceId": 61, "icon": "📖", "words": null },
+      {"id": "category-62", "title": "相关词", "sourceId": 62, "icon": "📖", "words": null },
     ] },
     { id: "unit-21", title: "第二十单元 数量和频率", categories: [
-      {"id": "category-63", "title": "数字", "icon": "📖", "words": null },
-      {"id": "category-64", "title": "频率", "icon": "📖", "words": null },
-      {"id": "category-65", "title": "相关词", "icon": "📖", "words": null },
+      {"id": "category-63", "title": "数字", "sourceId": 63, "icon": "📖", "words": null },
+      {"id": "category-64", "title": "频率", "sourceId": 64, "icon": "📖", "words": null },
+      {"id": "category-65", "title": "相关词", "sourceId": 65, "icon": "📖", "words": null },
     ] },
     { id: "unit-22", title: "第二十一单元 其他单词", categories: [
-      {"id": "category-66", "title": "冠词", "icon": "📖", "words": null },
-      {"id": "category-67", "title": "介词", "icon": "📖", "words": null },
-      {"id": "category-68", "title": "连词", "icon": "📖", "words": null },
-      {"id": "category-69", "title": "代词", "icon": "📖", "words": null },
+      {"id": "category-66", "title": "冠词", "sourceId": 66, "icon": "📖", "words": null },
+      {"id": "category-67", "title": "介词", "sourceId": 67, "icon": "📖", "words": null },
+      {"id": "category-68", "title": "连词", "sourceId": 68, "icon": "📖", "words": null },
+      {"id": "category-69", "title": "代词", "sourceId": 69, "icon": "📖", "words": null },
     ] },
   ]
 };

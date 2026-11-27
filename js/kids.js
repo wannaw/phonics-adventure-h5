@@ -219,13 +219,6 @@
       location.hash = `#/lesson/${encodeURIComponent(lesson.id)}`;
     } else if (action === 'play') {
       window.KidsAudio.playWord(button.dataset.word, notify);
-    } else if (action === 'extension-word') {
-      const text = button.dataset.word;
-      const recorded = state.lessons.some(entry => entry.words.some(word => word.word === text));
-      if (recorded && !button.dataset.accent) window.KidsAudio.playWord(text, notify);
-      else window.KidsAudio.playSpeech(text, notify, button.dataset.accent);
-    } else if (action === 'extension-sentence') {
-      window.KidsAudio.playSpeech(button.dataset.word, notify);
     } else if (action === 'course-audio') {
       window.KidsSoundMedia.play(button, notify);
     } else if (action === 'course-replay') {
