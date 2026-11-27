@@ -162,14 +162,15 @@
 
   function route() {
     window.KidsAudio.stop();
-    const [, page = 'home', encodedId, encodedWord] = (location.hash || '#/home').split('/');
+    const [, page = 'home', encodedId, encodedWord, tab] = (location.hash || '#/home').split('/');
     let id = null;
     let word = null;
     try {
       id = encodedId ? decodeURIComponent(encodedId) : null;
       word = encodedWord ? decodeURIComponent(encodedWord) : null;
     } catch { /* Invalid slugs fall back to the corresponding list. */ }
-    const extension = window.KidsExtension.render(page, id, word, { header, nav, esc, lessons: state.lessons });
+    const ui = { header, nav, esc, lessons: state.lessons };
+    const extension = window.KidsSounds.render(page, id, word, tab, ui) || window.KidsExtension.render(page, id, word, ui);
     const lesson = id ? lessonById(id) : null;
     if (extension) screen.innerHTML = extension;
     else if (page === 'home') renderHome();
@@ -192,6 +193,7 @@
       else if (page === 'result' && state.progress.completed[id]) renderResult(lesson);
       else renderMap();
     } else renderMap();
+    window.KidsSoundMedia.attach(screen);
     window.scrollTo(0, 0);
     if (page !== 'home') screen.querySelector('h1[tabindex="-1"]')?.focus({ preventScroll: true });
   }
@@ -224,8 +226,10 @@
       else window.KidsAudio.playSpeech(text, notify, button.dataset.accent);
     } else if (action === 'extension-sentence') {
       window.KidsAudio.playSpeech(button.dataset.word, notify);
-    } else if (action === 'play-ipa') {
-      window.KidsAudio.playIpa(button.dataset.id, notify);
+    } else if (action === 'course-audio') {
+      window.KidsSoundMedia.play(button, notify);
+    } else if (action === 'course-replay') {
+      window.KidsSoundMedia.replay(button);
     } else if (action === 'play-phoneme') {
       window.KidsAudio.playPhoneme(button.dataset.pattern, Number(button.dataset.variant), notify);
     } else if (action === 'prev-word' && lesson) {

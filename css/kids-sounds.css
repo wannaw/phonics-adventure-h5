@@ -1,0 +1,346 @@
+/* Load after kids-extension.css. */
+.sounds-page {
+  --sounds-navy: var(--extension-ink, #123b67);
+  --sounds-muted: var(--extension-muted, #45657d);
+  --sounds-blue: var(--extension-blue, #145c9c);
+  --sounds-sky: var(--extension-sky, #d9f3ff);
+  --sounds-cream: var(--extension-paper, #fffdf5);
+  --sounds-line: #a9cada;
+  --sounds-gutter: var(--extension-gutter, clamp(12px, 4vw, 20px));
+  color: var(--sounds-navy);
+  background: linear-gradient(#a8dcf7 0, #ebf7fc 18rem, var(--sounds-cream) 36rem);
+  overflow-wrap: anywhere;
+}
+
+.sounds-page > :is(.sound-table, .letter-grid, .sound-detail, .sound-tabs,
+  .sound-list, .sound-switcher, .sound-actions, .sound-status, .sound-media,
+  .sound-source-link) {
+  margin-inline: var(--sounds-gutter);
+  margin-block-start: 1rem;
+}
+
+.sounds-page > :is(.sound-table, .letter-grid, .sound-detail, .sound-tabs,
+  .sound-list, .sound-switcher, .sound-actions, .sound-status, .sound-media,
+  .sound-source-link):last-child {
+  margin-block-end: 1rem;
+}
+
+/* Grouped sound and letter tiles */
+.sounds-page .sound-table {
+  padding: clamp(10px, 3vw, 16px);
+  border: 1px solid var(--sounds-line);
+  border-radius: 18px;
+  background: var(--sounds-sky);
+}
+
+.sounds-page .sound-table h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.25;
+}
+
+.sounds-page .sound-table-row {
+  display: grid;
+  gap: .5rem;
+  margin-block-start: .75rem;
+}
+
+.sounds-page .sound-table-row + .sound-table-row {
+  padding-block-start: .75rem;
+  border-block-start: 1px solid var(--sounds-line);
+}
+
+.sounds-page .sound-table-row h3 {
+  margin: 0;
+  color: var(--sounds-muted);
+  font-size: .875rem;
+  line-height: 1.3;
+}
+
+.sounds-page :is(.sound-chip-grid, .letter-grid) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 60px), 1fr));
+  gap: .5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.sounds-page .sound-chip-grid {
+  margin: 0;
+}
+
+.sounds-page .letter-grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 48px), 1fr));
+}
+
+.sounds-page :is(.sound-chip, .letter-grid a, .sound-tabs a, .sound-actions > a,
+  .sound-actions > button, .rule-play) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 0;
+  min-block-size: 44px;
+  max-inline-size: 100%;
+  border: 1px solid var(--sounds-line);
+  background: var(--sounds-cream);
+  color: var(--sounds-navy);
+  font-weight: 800;
+  line-height: 1.25;
+  text-align: center;
+  text-decoration: none;
+}
+
+.sounds-page :is(.sound-chip, .letter-grid a) {
+  flex-direction: column;
+  inline-size: 100%;
+  min-block-size: 48px;
+  padding: .25rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 0 #8cb6cd;
+  font-size: 1.25rem;
+}
+
+.sounds-page :is(.sound-chip, .letter-grid a) small {
+  font-size: .75rem;
+}
+
+.sounds-page :is(.sound-chip, .letter-grid a, .sound-tabs a)[aria-current]:not([aria-current="false"]) {
+  border-color: var(--sounds-navy);
+  background: var(--sounds-navy);
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: .18em;
+}
+
+/* Wrap tabs and actions when translated labels need more space. */
+.sounds-page :is(.sound-tabs, .sound-actions) {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+}
+
+.sounds-page .sound-tabs a {
+  flex: 1 1 auto;
+  padding: .375rem .75rem;
+  border-radius: 999px;
+  font-size: .9rem;
+}
+
+.sounds-page .sound-actions > :is(a, button) {
+  flex: 1 1 8rem;
+  min-block-size: 48px;
+  padding: .5rem .75rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 0 #aac7d6;
+}
+
+.sounds-page .sound-actions > :is(.primary-button, :only-child:not(.secondary-button)) {
+  border-color: var(--sounds-navy);
+  background: var(--sounds-navy);
+  box-shadow: 0 3px 0 #0a2949;
+  color: #fff;
+}
+
+/* Pronunciation panel */
+.sounds-page .sound-detail {
+  display: grid;
+  gap: .75rem;
+  padding: clamp(12px, 4vw, 20px);
+  border: 1px solid var(--sounds-line);
+  border-radius: 18px;
+  background: var(--sounds-cream);
+}
+
+.sounds-page .sound-detail :is(h2, p, ol) {
+  margin: 0;
+}
+
+.sounds-page .sound-detail :is(p, ol) {
+  max-inline-size: 55ch;
+  line-height: 1.55;
+}
+
+.sounds-page .sound-detail ol {
+  padding-inline-start: 1.5em;
+}
+
+.sounds-page .sound-detail ol li + li {
+  margin-block-start: .375rem;
+}
+
+.sounds-page .sound-detail li::marker {
+  color: var(--sounds-blue);
+  font-weight: 800;
+}
+
+.sounds-page .sound-media {
+  min-inline-size: 0;
+  margin-block-end: 0;
+  border-radius: 12px;
+  background: var(--sounds-sky);
+}
+
+.sounds-page .sound-detail .sound-media {
+  margin: 0;
+}
+
+.sounds-page :is(.sound-detail, .sound-media) :is(img, video),
+.sounds-page :is(img, video).sound-media {
+  display: block;
+  inline-size: 100%;
+  max-inline-size: 100%;
+  block-size: auto;
+  max-block-size: 18rem;
+  border-radius: 12px;
+  background: var(--sounds-sky);
+  object-fit: contain;
+}
+
+.sounds-page > :is(img, video).sound-media {
+  inline-size: calc(100% - 2 * var(--sounds-gutter));
+}
+
+.sounds-page > .sound-source-link {
+  max-inline-size: calc(100% - 2 * var(--sounds-gutter));
+}
+
+.sounds-page .sound-source-link {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 44px;
+  color: var(--sounds-blue);
+  font-size: .875rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: .18em;
+}
+
+/* Example rows keep the playback control beside the text. */
+.sounds-page .sound-list {
+  display: grid;
+  gap: .5rem;
+  padding: 0;
+  list-style: none;
+}
+
+.sounds-page .sound-list > li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: .5rem;
+  min-block-size: 64px;
+  padding: .5rem .625rem .625rem .75rem;
+  border: 1px solid var(--sounds-line);
+  border-radius: 12px;
+  background: var(--sounds-cream);
+}
+
+.sounds-page .sound-list > li > div {
+  min-inline-size: 0;
+}
+
+.sounds-page .sound-list :is(strong, small) {
+  display: block;
+  line-height: 1.35;
+}
+
+.sounds-page .sound-list strong {
+  font-size: 1.125rem;
+}
+
+.sounds-page .sound-list small {
+  margin-block-start: .125rem;
+  color: var(--sounds-muted);
+  font-size: .85rem;
+}
+
+.sounds-page .rule-play {
+  min-inline-size: 48px;
+  min-block-size: 48px;
+  padding: .375rem .5rem;
+  border-color: #81b6d3;
+  border-radius: 12px;
+  background: var(--sounds-sky);
+  box-shadow: 0 2px 0 #8cb6cd;
+  font-size: 1.125rem;
+}
+
+.sounds-page .rule-play[aria-pressed="true"] {
+  background: var(--sounds-blue);
+  color: #fff;
+}
+
+.sounds-page .sound-switcher {
+  padding: 0 .75rem;
+  border: 1px solid var(--sounds-line);
+  border-radius: 12px;
+  background: var(--sounds-cream);
+}
+
+.sounds-page .sound-switcher > summary {
+  min-block-size: 44px;
+  padding-block: .625rem;
+  color: var(--sounds-blue);
+  font-weight: 800;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.sounds-page .sound-switcher[open] {
+  padding-block-end: .75rem;
+}
+
+.sounds-page .sound-switcher .sound-table {
+  margin-block-start: .5rem;
+}
+
+.sounds-page .sound-status {
+  color: var(--sounds-muted);
+  font-size: .875rem;
+  line-height: 1.4;
+}
+
+.sounds-page .sound-status:empty {
+  margin-block: 0;
+}
+
+.sounds-page .sound-status:not(:empty) {
+  padding: .5rem .75rem;
+  border-inline-start: 3px solid var(--sounds-blue);
+  background: var(--sounds-cream);
+}
+
+.sounds-page :is(a, button, summary, video):focus-visible {
+  outline: 3px solid var(--sounds-blue);
+  outline-offset: 2px;
+}
+
+.sounds-page :is(.sound-chip, .letter-grid a, .rule-play, .sound-actions > :is(a, button)):active {
+  box-shadow: none;
+}
+
+.sounds-page button:disabled {
+  opacity: .55;
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sounds-page .sound-actions > .primary-button:active {
+    transform: none;
+  }
+}
+
+@media (hover: hover) {
+  .sounds-page :is(.sound-chip, .letter-grid a, .sound-tabs a, .sound-switcher > summary,
+    .sound-actions > :is(a, button)):hover {
+    text-decoration: underline;
+    text-underline-offset: .18em;
+  }
+}
+
+.sounds-page .sound-list mark {
+  padding-inline: 0.08em;
+  border-radius: 0.2em;
+  background: #ffe9a1;
+  color: inherit;
+}

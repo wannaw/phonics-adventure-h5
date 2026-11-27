@@ -59,19 +59,23 @@
     speak(text, notify, accent);
   }
 
-  function playSound(source, notify) {
+  function playSound(source, notify, fallback = () => notify('发音暂时无法播放')) {
     stop();
     const audio = new Audio(source);
     activeAudio = audio;
     const failed = () => {
       if (activeAudio !== audio) return;
       activeAudio = null;
-      notify('发音暂时无法播放');
+      fallback();
     };
     audio.addEventListener('error', failed, { once: true });
     audio.addEventListener('ended', () => { if (activeAudio === audio) activeAudio = null; }, { once: true });
     audio.play().catch(failed);
   }
 
-  window.KidsAudio = { playWord, playPhoneme, playIpa, playSpeech, stop };
+  function playCourseMedia(source, fallback) {
+    playSound(source, null, fallback);
+  }
+
+  window.KidsAudio = { playWord, playPhoneme, playIpa, playSpeech, playCourseMedia, stop };
 })();
